@@ -22,3 +22,28 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python virtual env
+passbook_backend/source/
+venv/
+__pycache__/
+*.pyc
+
+# Python
+venv/
+backend/venv/
+passbook_backend/venv/
+passbook_backend/source/
+__pycache__/
+*.pyc
+*.pyd
+*.dll
+
+# Environment files
+.env
+
+# Uploads
+passbook_backend/uploads/
+
+# Node
+node_modules/

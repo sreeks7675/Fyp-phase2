@@ -116,7 +116,8 @@ import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Volume2 } from "lucide-react";
-type Mode = "bank" | "education";
+import PassbookFlow from "@/components/banking/PassbookFlow";
+type Mode = "bank" | "education" | "services";
 type Language = "ta" | "en";
 
 const EXPLAIN_CARDS = [
@@ -242,6 +243,7 @@ export default function Banking() {
     modes: {
         bank: language === "ta" ? "வங்கி" : "Bank",
         education: language === "ta" ? "விளக்கம்" : "Information",
+        services: language==="ta"? "வங்கி சேவைகள்" : "Services"
         },
 
     bank: {
@@ -338,7 +340,7 @@ export default function Banking() {
       <div className="max-w-screen-xl mx-auto p-6 space-y-6">
         {/* MODE SELECTOR */}
         <div className="flex gap-3">
-          {(["bank", "education"] as Mode[]).map((m) => (
+          {(["bank", "education","services"] as Mode[]).map((m) => (
             <Button
               key={m}
               variant={mode === m ? "default" : "outline"}
@@ -362,9 +364,16 @@ export default function Banking() {
               <Button onClick={() => redirectToBank("HDFC")}>HDFC</Button>
             </div>
           </Card>
+          
+
         )}
 
-      {/* EDUCATION SECTION */}
+        {/* SERVICES SECTION */}
+        {mode === "services" && <PassbookFlow />}
+
+
+
+        {/* EDUCATION SECTION */}
         {mode === "education" && (
           <section>
             <h2 className="text-xl font-semibold mb-4">{t.learnTitle}</h2>

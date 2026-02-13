@@ -21,7 +21,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
     # If text is empty, fallback to OCR
     if not text.strip():
-        images = convert_from_path(pdf_path)
+        images = convert_from_path(pdf_path,)
         for img in images:
             text += pytesseract.image_to_string(img)
 
