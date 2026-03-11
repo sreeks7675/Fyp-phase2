@@ -1,16 +1,4 @@
-/*import React from "react";
-// Assuming necessary utilities and routing context are handled by the environment
 
-// Import the main application component
-import Index from "./pages/Index";
-
-const App: React.FC = () => (
-    // Assuming required providers (QueryClient, Toaster, etc.) are handled by the main entry point
-    // or are unnecessary for this PoC. We will render Index directly.
-    <Index />
-);
-
-export default App;*/
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,7 +8,6 @@ import Home from "./pages/Home";
 import Banking from "./pages/Banking";
 import SchemeVoice from "./pages/Index";
 import NotFound from "./pages/NotFound";
-//import { LoanSchemeFlow } from "@/components/LoanSchemeFlow";
 
 const queryClient = new QueryClient();
 

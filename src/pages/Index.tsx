@@ -91,45 +91,7 @@ const SchemeVoice: React.FC = () => {
     }), [agentState]);
 
     const handleDataCollectionComplete = async (finalData: Record<string, string>) => {
-        /*toast({
-            title: selectedLanguage === "ta" ? "சேகரிப்பு முடிந்தது..." : "Data Collection Complete...",
-            description: selectedLanguage === "ta" ? "திட்டப் பொருத்தத்திற்காக தரவு அனுப்பப்படுகிறது." : "Sending data for scheme matching.",
-            duration: 5000,
-        });
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/submit_and_match`, {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ collected_data: finalData, user_id: agentState.user_id })
-            });
-            const result = await response.json();
-            if (response.ok && result.status === 'success') {
-                setRecommendedSchemes(result.schemes);
-                setStage("schemes");
-                toast({
-                    title: selectedLanguage === "ta" ? "திட்டங்கள் கண்டறியப்பட்டன" : "Schemes Found",
-                    description: selectedLanguage === "ta" ? "உங்கள் நிலைக்கு பொருந்தும் திட்டங்கள் காண்பிக்கப்படும்." : "Matching schemes are being displayed.",
-                    duration: 3000,
-                });
-            } else if (response.status === 404) {
-                toast({
-                    title: selectedLanguage === "ta" ? "திட்டங்கள் இல்லை" : "No Schemes Found",
-                    description: selectedLanguage === "ta" ? "உங்கள் நிலைக்கு பொருந்தும் திட்டங்கள் எதுவும் இல்லை." : "No schemes matched your profile and situation.",
-                    duration: 5000,
-                });
-            } else {
-                throw new Error(result.message || "Unknown server error.");
-            }
-        } catch (error) {
-            console.error("Scheme Match Error:", error);
-            toast({
-                title: selectedLanguage === "ta" ? "பிழை ஏற்பட்டது" : "Error Occurred",
-                description: selectedLanguage === "ta" ? `சேவையகத்தில் திட்டப் பொருத்தத்தில் பிழை ஏற்பட்டது.` : `Failed to match schemes on server: ${(error as Error).message}`,
-                variant: 'destructive',
-                duration: 5000
-            });
-        }*/
         if (!finalData.situation || finalData.situation.trim().length < 5) {
             console.error("Situation missing:", finalData);
             return;
@@ -168,12 +130,12 @@ const SchemeVoice: React.FC = () => {
             setStage("schemes");
             setSelectedScheme(null);
         } else if (stage === "application-form") {
-            setStage("cibil-verification");
-        } else if (stage === "cibil-verification") {
-            setStage("document-verification");
-        } else if (stage === "document-verification") {
             setStage("scheme-questions");
             setSchemeAnswers({});
+        } else if (stage === "document-verification") {
+            setStage("application-form");
+        } else if (stage === "cibil-verification") {
+            setStage("document-verification");
         }
     };
 
@@ -181,25 +143,6 @@ const SchemeVoice: React.FC = () => {
         toast({ title: selectedLanguage === "ta" ? "குரல் விளக்கம்" : "Voice Description", description: text, duration: 2000 });
     };
 
-    /*const handleStepComplete = (stepKey: string, value: string) => {
-        setAgentState(prev => {
-            const updated = { ...prev, [stepKey]: value } as AgentState;
-            const nextIdx = (prev.next_step_index || 0) + 1;
-            updated.next_step_index = nextIdx;
-            if (nextIdx >= steps.length) {
-                const finalData = {
-                    name: String(updated.name || ""),
-                    age: String(updated.age || ""),
-                    address: String(updated.address || ""),
-                    yearlyEarning: String(updated.earning || ""),
-                    community: String(updated.community || ""),
-                    situation: String(updated.situation || ""),
-                };
-                setTimeout(() => handleDataCollectionComplete(finalData), 0);
-            }
-            return updated;
-        });
-    };*/
     const handleTextSubmit = () => {
         if (!textInput.trim()) return;
 
@@ -372,7 +315,7 @@ const SchemeVoice: React.FC = () => {
                             language={selectedLanguage}
                             onComplete={(answers) => {
                                 setSchemeAnswers(answers);
-                                setStage("document-verification");
+                                setStage("application-form");
                             }}
                         />
                     ) : (
@@ -393,7 +336,19 @@ const SchemeVoice: React.FC = () => {
                 {stage === "cibil-verification" && (
                     <CibilVerification
                         language={selectedLanguage}
-                        onVerified={() => setStage("application-form")}
+                        onVerified={() => {
+                            setApplicationCounter((prev) => prev + 1);
+
+                            toast({
+                                title: selectedLanguage === "ta" ? "வெற்றி!" : "Success!",
+                                description:
+                                    selectedLanguage === "ta"
+                                        ? "உங்கள் விண்ணப்பம் சமர்ப்பிக்கப்பட்டது"
+                                        : "Your application has been submitted",
+                            });
+
+                            setStage("success");
+                        }}
                     />
                 )}
 
@@ -410,17 +365,7 @@ const SchemeVoice: React.FC = () => {
                             }}
                             language={selectedLanguage}
                             onSubmit={() => {
-                                setApplicationCounter((prev) => prev + 1);
-
-                                toast({
-                                    title: selectedLanguage === "ta" ? "வெற்றி!" : "Success!",
-                                    description:
-                                        selectedLanguage === "ta"
-                                            ? "உங்கள் விண்ணப்பம் சமர்ப்பிக்கப்பட்டது"
-                                            : "Your application has been submitted",
-                                });
-
-                                setStage("success");
+                                setStage("document-verification");
                             }}
                         />
                     </Card>
