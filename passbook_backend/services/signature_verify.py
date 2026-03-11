@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-username = os.getnv("USERNAME")
+username = os.getenv("USERNAME")
 password = os.getenv("PASSWORD")
 # connect mongo
 uri=f"mongodb+srv://{username}:{password}@cluster0.kec8ius.mongodb.net/?appName=Cluster0"
