@@ -8,8 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 username = os.getenv("USERNAME")
 password = os.getenv("PASSWORD")
+USERNAME=quote_plus(username)
+PASSWORD=quote_plus(password)
 # connect mongo
-uri=f"mongodb+srv://{username}:{password}@cluster0.kec8ius.mongodb.net/?appName=Cluster0"
+uri=f"mongodb+srv://{USERNAME}:{PASSWORD}@cluster0.kec8ius.mongodb.net/?appName=Cluster0"
 client = MongoClient(uri)
 db = client["bank"]
 collection = db["signature_cards"]
