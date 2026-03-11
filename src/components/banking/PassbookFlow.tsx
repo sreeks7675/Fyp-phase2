@@ -13,6 +13,7 @@ import IdentityVerification from "./IdentityVerification";
 import ServiceSelector from "./ServiceSelector";
 import ServiceForm from "./ServiceForm";
 import PrintableSlip from "./PrintableSlip";
+import SignatureVerification from "./SignatureVerification"
 
 export default function PassbookFlow() {
   const [step, setStep] = useState<BankingStep>("scan");
@@ -38,30 +39,32 @@ export default function PassbookFlow() {
           data={passbook!}
           onConfirm={(confirmed) => {
             setPassbook(confirmed);
-            setStep("verify");
+            setStep("otp");
           }}
         />
       );
 
-    case "verify":
+    case "otp":
       return (
         <IdentityVerification
           passbook={passbook!}
-          onVerified={(id) => {
-            setIdentity(id);
+          onVerified={() => {
             setStep("select-service");
           }}
         />
       );
 
+
     case "select-service":
       return (
         <ServiceSelector
+          passbook={passbook!}
           onSelect={(s) => {
             setService(s);
             setStep("service-form");
           }}
         />
+
       );
 
     case "service-form":
@@ -71,6 +74,16 @@ export default function PassbookFlow() {
           passbook={passbook!}
           onSubmit={(p) => {
             setPayload(p);
+            setStep("signature");
+          }}
+        />
+      );
+
+    case "signature":
+      return (
+        <SignatureVerification
+          passbook={passbook!}
+          onVerified={() => {
             setStep("print");
           }}
         />

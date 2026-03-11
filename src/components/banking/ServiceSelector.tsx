@@ -1,11 +1,14 @@
 import { BankingServiceType } from "./types";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PassbookData } from "./types";
 
 export default function ServiceSelector({
   onSelect,
+  passbook,
 }: {
   onSelect: (s: BankingServiceType) => void;
+  passbook:PassbookData;
 }) {
   const services = [
     {
@@ -49,11 +52,19 @@ export default function ServiceSelector({
             </p>
 
             <Button
-              className="w-full"
-              onClick={() => onSelect(service.key)}
-            >
-              Proceed
-            </Button>
+        className="w-full"
+        disabled={
+          service.key === "dd" &&
+          passbook.accountType.toLowerCase().includes("basic")
+        }
+        onClick={() => onSelect(service.key)}
+      >
+        {service.key === "dd" &&
+        passbook.accountType.toLowerCase().includes("basic")
+          ? "Not Available for Basic Savings"
+          : "Proceed"}
+</Button>
+
           </div>
         ))}
       </div>

@@ -1,9 +1,10 @@
 export type BankingStep =
   | "scan"
   | "confirm"
-  | "verify"
+  | "otp"
   | "select-service"
   | "service-form"
+  | "signature"
   | "print";
 
 export interface PassbookData {
@@ -13,7 +14,9 @@ export interface PassbookData {
   branchName: string;
   ifsc: string;
   cif: string;
+  balance?: number;   // ADD THIS
 }
+
 
 export interface IdentityData {
   aadhaarName: string;
@@ -27,6 +30,8 @@ export type BankingServiceType = "withdrawal" | "payin" | "dd";
 
 export interface ServicePayload {
   amount?: number;
+  amountWords?: string;
   beneficiaryName?: string;
+  balanceAfter?:number;
   purpose?: string;
 }

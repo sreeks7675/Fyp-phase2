@@ -1,6 +1,4 @@
 import { PassbookData, BankingServiceType, ServicePayload } from "./types";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export default function PrintableSlip({
   passbook,
@@ -12,18 +10,56 @@ export default function PrintableSlip({
   payload: ServicePayload;
 }) {
   return (
-    <Card className="p-8 space-y-4 print:p-0">
-      <h1 className="text-center text-xl font-bold">Bank Slip</h1>
-      <p>Name: {passbook.accountHolderName}</p>
-      <p>Account: {passbook.accountNumber}</p>
-      <p>Service: {service}</p>
-      <p>Amount: ₹{payload.amount}</p>
+    <div className="p-6 print:p-0">
+      <div className="max-w-xl mx-auto border p-6 space-y-4 bg-white print:border-none">
 
-      <div className="mt-8">Signature:</div>
+        <h1 className="text-xl font-bold text-center">
+          Bank Service Slip
+        </h1>
 
-      <Button onClick={() => window.print()} className="print:hidden">
-        Print
-      </Button>
-    </Card>
+        <hr />
+
+        <p><b>Name:</b> {passbook.accountHolderName}</p>
+        <p><b>Account:</b> {passbook.accountNumber}</p>
+        <p><b>Branch:</b> {passbook.branchName}</p>
+
+        <hr />
+
+        <p><b>Service:</b> {service.toUpperCase()}</p>
+        <p><b>Amount:</b> ₹{payload.amount}</p>
+        <p><b>Amount in words:</b> {payload.amountWords}</p>
+
+        {service === "withdrawal" && (
+          <p><b>Balance after:</b> ₹{payload.balanceAfter}</p>
+        )}
+
+        <hr />
+
+        {/* Signature area */}
+        <div className="flex justify-between mt-10">
+          <div className="text-center">
+            <div className="h-12 w-40 border-b" />
+            <p>Customer Signature</p>
+          </div>
+
+          <div className="text-center">
+            <div className="h-12 w-40 border-b" />
+            <p>Teller Signature</p>
+          </div>
+        </div>
+
+        {/* Token */}
+        <div className="mt-6 text-center text-sm">
+          Token No: {Math.floor(Math.random() * 900 + 100)}
+        </div>
+
+        <button
+          onClick={() => window.print()}
+          className="mt-6 w-full border p-2 print:hidden"
+        >
+          Print Slip
+        </button>
+      </div>
+    </div>
   );
 }

@@ -102,7 +102,7 @@ export default function IdentityVerification({
     </Card>
   );
 }*/
-
+/* WORKING VERSION WITHOUT FIREBASE OTP 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -210,6 +210,259 @@ export default function IdentityVerification({
             placeholder="Enter OTP"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+          />
+
+          <Button onClick={confirmOtp}>
+            Verify OTP
+          </Button>
+        </>
+      )}
+    </Card>
+  );
+}*/
+
+/*import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { auth } from "@/lib/firebase";
+import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from "firebase/auth";
+
+export default function IdentityVerification({ passbook, onVerified }: any) {
+  const [otp, setOtp] = useState("");
+  const [confirmation, setConfirmation] = useState<ConfirmationResult | null>(null);
+  const [otpSent, setOtpSent] = useState(false);
+
+  const mobile = passbook.mobileNumber;
+
+  useEffect(() => {
+    if (!(window as any).recaptchaVerifier) {
+      (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha", {
+        size: "invisible",
+      });
+    }
+  }, []);
+
+  const sendOtp = async () => {
+    try {
+      const phone = `+91${mobile}`;
+      const result = await signInWithPhoneNumber(
+        auth,
+        phone,
+        (window as any).recaptchaVerifier
+      );
+
+      setConfirmation(result);
+      setOtpSent(true);
+    } catch (e) {
+      console.error(e);
+      alert("OTP failed");
+    }
+  };
+
+  const confirmOtp = async () => {
+    if (!confirmation) return;
+
+    try {
+      await confirmation.confirm(otp);
+      onVerified({ verified: true });
+    } catch {
+      alert("Invalid OTP");
+    }
+  };
+
+  return (
+    <Card className="p-6 space-y-4">
+      <h2 className="text-xl font-semibold">Mobile Verification</h2>
+
+      <p>OTP will be sent to: {mobile}</p>
+
+      {!otpSent && <Button onClick={sendOtp}>Send OTP</Button>}
+
+      {otpSent && (
+        <>
+          <Input value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="Enter OTP" />
+          <Button onClick={confirmOtp}>Verify</Button>
+        </>
+      )}
+
+      <div id="recaptcha"></div>
+    </Card>
+  );
+}*/
+
+
+/* FIREBASE AUTH 
+import { useState, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { auth } from "@/lib/firebase";
+import {
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  ConfirmationResult,
+} from "firebase/auth";
+
+export default function IdentityVerification({ passbook, onVerified }: any) {
+  const [otp, setOtp] = useState("");
+  const [confirmation, setConfirmation] =
+    useState<ConfirmationResult | null>(null);
+  const [otpSent, setOtpSent] = useState(false);
+
+  const recaptchaRef = useRef<RecaptchaVerifier | null>(null);
+
+  const mobile = passbook.mobileNumber;
+
+  const sendOtp = async () => {
+    try {
+      const phone = `+91${mobile}`;
+
+      // ✅ create once
+      if (!recaptchaRef.current) {
+        recaptchaRef.current = new RecaptchaVerifier(
+          auth,
+          "recaptcha-container",
+          { size: "invisible" }
+        );
+      }
+
+      const result = await signInWithPhoneNumber(
+        auth,
+        phone,
+        recaptchaRef.current
+      );
+
+      setConfirmation(result);
+      setOtpSent(true);
+    } catch (e) {
+      console.error(e);
+      alert("OTP failed");
+    }
+  };
+
+  const confirmOtp = async () => {
+    if (!confirmation) return;
+
+    try {
+      await confirmation.confirm(otp);
+      onVerified({ verified: true });
+    } catch {
+      alert("Invalid OTP");
+    }
+  };
+
+  return (
+    <Card className="p-6 space-y-4">
+      <h2 className="text-xl font-semibold">Mobile Verification</h2>
+
+      <p>OTP will be sent to: {mobile}</p>
+
+      {!otpSent && <Button onClick={sendOtp}>Send OTP</Button>}
+
+      {otpSent && (
+        <>
+          <Input
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            placeholder="Enter OTP"
+          />
+          <Button onClick={confirmOtp}>Verify</Button>
+        </>
+      )}
+
+      {/* MUST exist *//*}
+      <div id="recaptcha-container"></div>
+    </Card>
+  );
+}*/
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+
+export default function IdentityVerification({ passbook, onVerified }: any) {
+
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+
+  const mobile = passbook.mobileNumber;
+
+  const sendOtp = async () => {
+    try {
+      const res = await fetch("http://localhost:5071/otp/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          mobile
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.status === "otp_sent") {
+        setOtpSent(true);
+        alert("OTP sent to mobile");
+      } else {
+        alert("Failed to send OTP");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("OTP failed");
+    }
+  };
+
+
+  const confirmOtp = async () => {
+
+    try {
+      const res = await fetch("http://localhost:5071/otp/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          mobile,
+          otp
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.status === "verified") {
+        onVerified({ verified: true });
+      } else {
+        alert("Invalid OTP");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Verification failed");
+    }
+  };
+
+
+  return (
+    <Card className="p-6 space-y-4">
+      <h2 className="text-xl font-semibold">Mobile Verification</h2>
+
+      <p>OTP will be sent to: {mobile}</p>
+
+      {!otpSent && (
+        <Button onClick={sendOtp}>
+          Send OTP
+        </Button>
+      )}
+
+      {otpSent && (
+        <>
+          <Input
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            placeholder="Enter OTP"
           />
 
           <Button onClick={confirmOtp}>
