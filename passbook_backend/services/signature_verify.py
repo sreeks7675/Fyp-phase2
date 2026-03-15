@@ -4,38 +4,41 @@ from models.mobilenet_model import generate_embedding
 from urllib.parse import quote_plus
 import os
 from dotenv import load_dotenv
+import numpy as np
 
 load_dotenv()
-username = os.getenv("USERNAME")
-password = os.getenv("PASSWORD")
-USERNAME=quote_plus(username)
-PASSWORD=quote_plus(password)
+username = quote_plus("SreekarKashyap")
+password = quote_plus("Sreekar@12023")
 # connect mongo
-uri=f"mongodb+srv://{USERNAME}:{PASSWORD}@cluster0.kec8ius.mongodb.net/?appName=Cluster0"
+uri=f"mongodb+srv://{username}:{password}@cluster0.kec8ius.mongodb.net/?appName=Cluster0"
 client = MongoClient(uri)
 db = client["bank"]
-collection = db["signature_cards"]
-
+collection = db["Signature_Card"]
 
 def verify_signature(account_number, image_path):
 
     uploaded_embedding = generate_embedding(image_path)
+
+    # Normalize embedding
+    uploaded_embedding = uploaded_embedding / np.linalg.norm(uploaded_embedding)
 
     record = collection.find_one({"accountNumber": account_number})
 
     if not record:
         return False, "No signature on file"
 
-    stored_embedding = record["embedding"]
+    stored_embedding = np.array(record["embedding"])
+    stored_embedding = stored_embedding / np.linalg.norm(stored_embedding)
 
     similarity = cosine_similarity(
         [uploaded_embedding],
         [stored_embedding]
     )[0][0]
 
-    print("Similarity:", similarity)
+    print("Similarity Score:", similarity)
 
-    if similarity > 0.80:
-        return True, similarity
+    # Recommended threshold after preprocessing
+    if similarity > 0.98:
+        return True, float(similarity)
     else:
-        return False, similarity
+        return False, float(similarity)
