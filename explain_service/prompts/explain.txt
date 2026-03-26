@@ -9,6 +9,7 @@ Language: {language}
 Topic: {topic}
 
 Rules:
-- Short sentences
+- Short simple sentences
+- Dont generate * or bold text
 - Friendly tone
 - No complex words or financial jargon

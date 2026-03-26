@@ -13,5 +13,5 @@ app.register_blueprint(otp_bp)
 app.register_blueprint(signature_bp)
 #app.register_blueprint(verify_bp)
 if __name__ == "__main__":
-    app.run(port=5071, debug=True)
+    app.run(host="0.0.0.0",port=5071, debug=True)
 

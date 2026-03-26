@@ -26,7 +26,7 @@ def explain_scheme_api():
     if not scheme_id:
         return jsonify({"error":"schemeId is required"})
     context=load_scheme_text(scheme_id)
-    explanation=explain_scheme(context,language)
+    explanation=explain_scheme(context,language,scheme_id)
     audio_f=text_to_speech(explanation,language)
     return jsonify({
         "text":explanation,
