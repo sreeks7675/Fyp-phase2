@@ -190,7 +190,7 @@ def get_matching_schemes(user_data: Dict[str, Any], situation_text: str) -> List
 
 
 OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "phi4-mini:latest")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:1.5b")
 WHISPER_MODEL_SIZE = os.environ.get("WHISPER_MODEL_SIZE", "small")
 
 SYSTEM_PROMPT = """
