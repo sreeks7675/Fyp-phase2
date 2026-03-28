@@ -8,7 +8,7 @@ OUTPUTS=BASE_DIR / "outputs"
 FORM_DOCS.mkdir(exist_ok=True)
 OUTPUTS.mkdir(exist_ok=True)
 extractor=Textractor(profile_name="default", region_name="us-east-1")
-pdf_path=FORM_DOCS / "kcc-farmer-finance-application-form.pdf"
+pdf_path=FORM_DOCS / "tw-application-form-sep-2022.pdf"
 document=extractor.analyze_document(
     file_source=str(pdf_path),
     features=[TextractFeatures.FORMS]
@@ -22,6 +22,6 @@ for field in document.form.fields:
         "confidence": field.confidence
     })
 
-output_path=OUTPUTS / "kccFarmerFinanceForm.json"
+output_path=OUTPUTS / "twoWheelerLoanForm.json"
 with open(output_path,"w",encoding="utf-8") as f:
     json.dump(kv_pairs,f,indent=2,ensure_ascii=False)

@@ -1,0 +1,17 @@
+[
+  { "key": "Date", "value": "", "confidence": 99.0 },
+  { "key": "To", "value": "Manager, Credit Card Operations, AXIS Bank Ltd.", "confidence": 99.0 },
+  { "key": "Existing Credit Limit", "value": "", "confidence": 99.0 },
+  { "key": "Rupees (in words) - Existing", "value": "", "confidence": 99.0 },
+  { "key": "Desired Credit Limit", "value": "", "confidence": 99.0 },
+  { "key": "Rupees (in words) - Desired", "value": "", "confidence": 99.0 },
+  { "key": "Latest ITR with computation of Total Income", "value": "UNSELECTED", "confidence": 95.0 },
+  { "key": "Salary slip along with two months bank statement where salary reflects", "value": "UNSELECTED", "confidence": 95.0 },
+  { "key": "Form 16 Part A & B", "value": "UNSELECTED", "confidence": 95.0 },
+  { "key": "Salary account with AXIS", "value": "UNSELECTED", "confidence": 95.0 },
+  { "key": "Salary Account Number (if AXIS salary account)", "value": "", "confidence": 99.0 },
+  { "key": "Name of the Primary Cardmember", "value": "", "confidence": 99.0 },
+  { "key": "AXIS Bank Card Number", "value": "", "confidence": 99.0 },
+  { "key": "Card Expiry Date (MM)", "value": "", "confidence": 99.0 },
+  { "key": "Card Expiry Date (YY)", "value": "", "confidence": 99.0 }
+]
