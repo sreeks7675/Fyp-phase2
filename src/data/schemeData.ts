@@ -60,7 +60,7 @@ export const schemes = [
     nameTa: "இருசக்கர வாகன கடன் திட்டம்",
     description: "Affordable loans for purchasing two-wheelers.",
     descriptionTa: "இருசக்கர வாகனங்களை வாங்குவதற்கான மலிவு கடன்.",
-    eligibility: ["Age: 21-60", "Employed", "Income > 2 LPA"],
+    eligibility: ["Age: 18-40", "Employed", "Income > 2 LPA"],
     maxAmount: "₹40,000",
     interestRate: "8.0% p.a.",
     keywords: ["bike", "two wheeler", "motorcycle", "இருசக்கர", "vehicle"],

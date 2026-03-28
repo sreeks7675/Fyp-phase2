@@ -1,0 +1,128 @@
+[
+  {
+    "id": "kisan_credit_card",
+    "name": "Kisan Credit Card Scheme",
+    "nameTa": "கிசான் கடன் அட்டை திட்டம்",
+    "content": "The Kisan Credit Card scheme provides adequate and timely credit to farmers for agricultural operations. The Government of India provides interest subvention of 2% and Prompt Repayment Incentive of 3%, making credit available at 4% per annum. Covers short-term credit for crop cultivation, post-harvest expenses, produce marketing loans, consumption requirements, working capital for farm assets, and investment credit for allied activities.",
+    "eligibility": "Farmers - individual or joint borrowers who are owner cultivators. Tenant farmers, oral lessees and share croppers. Self Help Groups or Joint Liability Groups of farmers.",
+    "ageMin": 18,
+    "ageMax": 65,
+    "embedding": [
+      0.0234,
+      0.8123,
+      0.4567,
+      0.6789,
+      0.1234,
+      0.5678,
+      0.2345,
+      0.789,
+      0.3456,
+      0.8901
+    ]
+  },
+  {
+    "id": "pmfby",
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "nameTa": "பிரதான் மந்திரி பசல் பீமா யோஜனா",
+    "content": "PMFBY is a crop insurance scheme launched on 18th February 2016. It provides financial protection to farmers against crop loss due to natural disasters such as hail, drought and famine, pests, and diseases. Maximum premium payable by the farmer is 2% for Kharif crops, 1.5% for Rabi crops, and 5% for commercial or horticultural crops. The remaining premium is subsidized by the government. Coverage includes yield losses for standing crops, prevented sowing, post-harvest losses up to 14 days, and localised calamities like hailstorms and landslides.",
+    "eligibility": "All farmers including tenant farmers and sharecroppers growing notified crops in notified areas. Must have insurable interest in the insured crop. Must possess valid land ownership certificate or land tenure agreement. Must apply within 2 weeks of sowing season start.",
+    "ageMin": 18,
+    "ageMax": 70,
+    "embedding": [
+      0.7812,
+      0.1045,
+      0.9234,
+      0.3312,
+      0.6601,
+      0.2789,
+      0.8456,
+      0.0923,
+      0.5134,
+      0.4478
+    ]
+  },
+  {
+    "id": "mudra",
+    "name": "Pradhan Mantri MUDRA Yojana",
+    "nameTa": "பிரதான் மந்திரி முத்ரா யோஜனா",
+    "content": "PM MUDRA Yojana provides loans up to Rs. 10 lakh to non-corporate, non-farm small and micro enterprises. Loans are classified under three categories: Shishu (up to Rs. 50,000), Kishore (Rs. 50,001 to Rs. 5 lakh), and Tarun (Rs. 5,00,001 to Rs. 10 lakh). These loans are provided for income-generating activities in manufacturing, trading, and services sectors. No collateral is required for MUDRA loans.",
+    "eligibility": "Any Indian citizen who has a business plan for a non-farm income-generating activity. Includes small manufacturing units, shopkeepers, fruit and vegetable vendors, artisans, and service sector businesses. Applicable for new as well as existing businesses.",
+    "ageMin": 18,
+    "ageMax": 65,
+    "embedding": [
+      0.3345,
+      0.5567,
+      0.1289,
+      0.8834,
+      0.4123,
+      0.7056,
+      0.9312,
+      0.2678,
+      0.6789,
+      0.0445
+    ]
+  },
+  {
+    "id": "commercial_card",
+    "name": "Commercial Card Scheme",
+    "nameTa": "வணிக அட்டை திட்டம்",
+    "content": "Credit card scheme for business owners to manage commercial transactions efficiently. Provides a revolving credit line for business expenses, supplier payments, inventory purchases, and working capital needs. Offers detailed transaction reporting for accounting and GST compliance. Suitable for managing day-to-day business cash flow with a high credit limit.",
+    "eligibility": "Registered business owner aged between 25 and 65 years. Minimum annual business turnover as per bank norms. Valid business registration documents and GST registration required.",
+    "ageMin": 25,
+    "ageMax": 65,
+    "embedding": [
+      0.5678,
+      0.2901,
+      0.7423,
+      0.1156,
+      0.8834,
+      0.4512,
+      0.0789,
+      0.6234,
+      0.3567,
+      0.9012
+    ]
+  },
+  {
+    "id": "twow",
+    "name": "Amma Two Wheeler Scheme",
+    "nameTa": "அம்மா இரு சக்கர வாகன திட்டம்",
+    "content": "The Amma Two Wheeler Scheme is a Tamil Nadu government initiative that provides subsidized two-wheelers to working women. Under this scheme, eligible women can purchase a two-wheeler at a 50% subsidy up to Rs. 25,000 from the government. The scheme aims to improve mobility and economic independence of working women in Tamil Nadu, enabling them to commute to workplaces more easily.",
+    "eligibility": "Women aged between 18 and 40 years who are employed or self-employed in Tamil Nadu. Annual income should not exceed Rs. 2.5 lakh. Must hold a valid driving licence. Should not have previously availed of this scheme.",
+    "ageMin": 21,
+    "ageMax": 40,
+    "embedding": [
+      0.9123,
+      0.4456,
+      0.2234,
+      0.7789,
+      0.5012,
+      0.1345,
+      0.8678,
+      0.3901,
+      0.6456,
+      0.0167
+    ]
+  },
+  {
+    "id": "pmus",
+    "name": "Pradhan Mantri Uchchatar Shiksha Protsahan",
+    "nameTa": "பிரதான் மந்திரி உச்சதர் சிக்ஷா ப்ரோட்சாஹன்",
+    "content": "PM-USP provides scholarships to meritorious students from low-income families to meet day-to-day expenses while pursuing higher education. The scheme offers Rs. 10,000 per annum for the first three years of undergraduate studies and Rs. 20,000 per annum for the fourth and fifth year of professional courses. Scholarships are disbursed directly into the student's bank account through DBT.",
+    "eligibility": "Students who have passed Class XII from State Board examinations and scored above 80th percentile. Family income should not exceed Rs. 8 lakh per annum. Must be pursuing regular courses and not distance education. Must not be availing any other scholarship.",
+    "ageMin": 17,
+    "ageMax": 25,
+    "embedding": [
+      0.1567,
+      0.689,
+      0.4123,
+      0.9345,
+      0.2678,
+      0.7901,
+      0.5234,
+      0.0456,
+      0.8789,
+      0.3012
+    ]
+  }
+] 

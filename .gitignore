@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+ragbackend/venv
 # Python virtual env
 passbook_backend/source/
 venv/
