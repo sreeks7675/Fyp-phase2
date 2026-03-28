@@ -2232,6 +2232,9 @@ def agent_step():
                     print_jsonrpc(collected)
                 else:
                     print(f"[SITUATION VALIDATION] '{extracted}' matches at least one scheme, accepting")
+                    collected[key] = extracted        # ← THIS WAS MISSING
+                    values_extracted[key] = extracted  # ← THIS WAS MISSING
+                    print_jsonrpc(collected)
                 # Either way, don't re-ask — break out
                 break
 

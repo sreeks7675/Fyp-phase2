@@ -11,10 +11,10 @@ export const tractorLoanForm = [
   {
     section: "Tractor Information",
     fields: [
-      { key: "tractorModel", label: "Tractor Model", labelTa: "டிராக்டர் மாடல்", editable: false },
+      { key: "tractor_model", label: "Tractor Model", labelTa: "டிராக்டர் மாடல்", editable: false },
       { key: "manufacturer", label: "Manufacturer", labelTa: "உற்பத்தியாளர்", editable: false },
       { key: "price", label: "Price", labelTa: "விலை", editable: false },
-      { key: "loanAmount", label: "Loan Amount", labelTa: "கடன் தொகை", editable: false },
+      { key: "loan_amount", label: "Loan Amount", labelTa: "கடன் தொகை", editable: false },
     ],
   },
 ];

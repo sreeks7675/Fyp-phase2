@@ -39,7 +39,24 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
 }) => {
   const [accountNumber, setAccountNumber] = useState("");
   const selectedForm: FormSection[] = FORM_REGISTRY[formKey] || [];
-  
+
+//NEW ADDITION
+const maxAmounts: Record<string, number> = {
+  "tractor-loan": 500000,
+  "kcc-farmer": 300000,
+  "two-wheeler": 40000,
+  "commercial-card": 500000,
+  "pm-college": 20000,
+  "pm-fby": Infinity,
+  "credit-limit-enhancement": Infinity,
+};
+
+const max = maxAmounts[formKey] ?? Infinity;
+const rawLoan = (formFields.loanAmount || "").replace(/[₹,\s]/g, "");
+const loanVal = parseInt(rawLoan) || 0;
+const loanExceedsMax = loanVal > max;
+  //END OF NEW ADDITION
+
   const formattedAppNumber = String(applicationNumber).padStart(6, '0');
   
 // Printing application form
@@ -110,6 +127,15 @@ const handlePrint = async () => {
                       readOnly={!field.editable}
                       className="text-base bg-gray-50 read-only:bg-gray-100"
                     />
+                    {/*-- New addition for loan amount validation */}
+                    {field.key === "loanAmount" && loanExceedsMax && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {language === "ta"
+                          ? `கடன் தொகை ₹${max.toLocaleString("en-IN")} மிகாமல் இருக்க வேண்டும்`
+                          : `Loan amount cannot exceed ₹${max.toLocaleString("en-IN")}`}
+                      </p>
+                    )}
+                    {/*-- End of new addition */}
                   </div>
                 ))}
               </div>
@@ -141,7 +167,7 @@ const handlePrint = async () => {
             </Button>
             <Button
               onClick={onSubmit}
-              disabled={!accountNumber.trim()}
+              disabled={!accountNumber.trim() || loanExceedsMax} // NEW ADDITION
               className="flex-1 bg-green-600 hover:bg-green-700 text-white"
               size="lg"
             >

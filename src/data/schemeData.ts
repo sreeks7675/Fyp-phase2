@@ -13,6 +13,8 @@ export const schemes = [
     questions: [
       { key: "land_size", label: "நீங்கள் வைத்துள்ள நிலத்தின் அளவு என்ன?", labelEn: "What is your land size?" },
       { key: "tractor_model", label: "டிராக்டர் மாடல் என்ன?", labelEn: "What is the tractor model?" },
+      { key: "manufacturer", label: "Manufacturer", labelTa: "உற்பத்தியாளர்", editable: false },
+      { key: "price", label: "Price", labelTa: "விலை", editable: false },
       { key: "loan_amount", label: "எவ்வளவு தொகை கடனாக வேண்டும்?", labelEn: "How much loan amount do you need?" }
     ],
 
@@ -22,6 +24,8 @@ export const schemes = [
       { key: "address", label: "Address", labelTa: "முகவரி", editable: false },
       { key: "land_size", label: "Land Size (in acres)", labelTa: "நில அளவு (ஏக்கர்)", editable: false },
       { key: "tractor_model", label: "Tractor Model", labelTa: "டிராக்டர் மாடல்", editable: false },
+      { key: "manufacturer", label: "Manufacturer", labelTa: "உற்பத்தியாளர்", editable: false },
+      { key: "price", label: "Price", labelTa: "விலை", editable: false },
       { key: "loan_amount", label: "Loan Amount", labelTa: "கடன் தொகை", editable: false }
     ]
   },
@@ -60,7 +64,7 @@ export const schemes = [
     nameTa: "இருசக்கர வாகன கடன் திட்டம்",
     description: "Affordable loans for purchasing two-wheelers.",
     descriptionTa: "இருசக்கர வாகனங்களை வாங்குவதற்கான மலிவு கடன்.",
-    eligibility: ["Age: 18-40", "Employed", "Income > 2 LPA"],
+    eligibility: ["Age: 18-40", "Employed", "Income below ₹2,00,000 p.a."],
     maxAmount: "₹40,000",
     interestRate: "8.0% p.a.",
     keywords: ["bike", "two wheeler", "motorcycle", "இருசக்கர", "vehicle"],
