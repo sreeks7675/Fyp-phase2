@@ -38,7 +38,7 @@ def verify_signature(account_number, image_path):
     print("Similarity Score:", similarity)
 
     # Recommended threshold after preprocessing
-    if similarity > 0.98:
+    if similarity > 0.998:
         return True, float(similarity)
     else:
         return False, float(similarity)
