@@ -59,7 +59,3 @@ npm run build
 ```
 
 Then deploy the generated output using your preferred hosting platform.
-
-## Notes
-
-If this repository is connected to Lovable, changes pushed to GitHub may be reflected in the linked Lovable project.
